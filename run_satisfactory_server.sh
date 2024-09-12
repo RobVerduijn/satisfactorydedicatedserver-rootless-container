@@ -6,7 +6,7 @@
 set +x
 function set_variables() {
     printf "\n### Setting variables...\n"
-    maxplayers="${maxplayers:4}"
+    maxplayers="${maxplayers:-4}"
     steam_path="${HOME}/Steam"
     steam_cmd="${steam_path}/steamcmd.sh"
     base_game_dir="${steam_path}/steamapps/common/SatisfactoryDedicatedServer"
