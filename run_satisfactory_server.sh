@@ -36,12 +36,13 @@ function set_maxplayers () {
         echo '[/Script/Engine.GameSession]' >> $configdir/Game.ini
         echo "MaxPlayers=$maxplayers" >> $configdir/Game.ini
     else
-    # Add maxplayers if it does not exist
-    if ! grep -q MaxPlayers= $configdir/Game.ini; then
-        sed -i "/\[\/Script\/Engine.GameSession\]/a MaxPlayers=$maxplayers" $configdir/Game.ini
-    else
-        # Set maxplayers if it exists
-        sed -i "s/MaxPlayers=.*/MaxPlayers=$maxplayers/" $configdir/Game.ini
+        # Add maxplayers if it does not exist
+        if ! grep -q MaxPlayers= $configdir/Game.ini; then
+            sed -i "/\[\/Script\/Engine.GameSession\]/a MaxPlayers=$maxplayers" $configdir/Game.ini
+        else
+            # Set maxplayers if it exists
+            sed -i "s/MaxPlayers=.*/MaxPlayers=$maxplayers/" $configdir/Game.ini
+        fi
     fi
 }
 
