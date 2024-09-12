@@ -27,9 +27,9 @@ function set_maxplayers () {
     # installing crudini would increase the image size by 50%, so we work with sed
     printf "\n### Setting MaxPlayers to $maxplayers...\n"
     # create config dir if it does not exist
-    if [ ! -e $configdir ] && mkdir -p $configdir
+    [ ! -e $configdir ] && mkdir -p $configdir
     # create Game.ini if it does not exist
-    if [ ! -e $configdir/Game.ini ] ; then touch $configdir/Game.ini ; fi
+    [ ! -e $configdir/Game.ini ] && touch $configdir/Game.ini
     # Add Section and maxplayers if section does not exist
     if ! grep -q '\[/Script/Engine.GameSession]' $configdir/Game.ini ; then
         echo >> $configdir/Game.ini
@@ -65,4 +65,5 @@ function start_satisfactory() {
 set_variables
 install_steamcmd
 update_satisfactory
+set_maxplayers
 start_satisfactory
