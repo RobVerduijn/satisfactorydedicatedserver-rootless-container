@@ -13,6 +13,7 @@ TimeoutStopSec=70
 ExecStart=/usr/bin/podman run --replace -d --cidfile=%t/%n.ctr-id --cgroups=no-conmon --sdnotify=conmon \
         -v /path/to/SatisfactoryDedicatedServer:/home/steam/Steam:Z \
         -v /path/to/SaveGames:/home/steam/.config/Epic/FactoryGame/Saved/SaveGames:Z \
+        --env=maxplayers=16 \
         --publish 7777:7777/udp \
         --publish 7777:7777/tcp \
         --name satisfactory-server satisfactory-server:latest

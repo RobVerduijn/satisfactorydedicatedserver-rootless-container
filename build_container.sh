@@ -1,3 +1,6 @@
+# see: https://satisfactory.wiki.gg/wiki/Dedicated_servers
+# see 
+
 # start new container from scratch
 set -x
 # from scratch is the smallest form of parent container, ie: nothing at all
@@ -19,7 +22,7 @@ mkdir -p $mnt/home/steam/Steam $mnt/home/steam/.config/Epic/FactoryGame/Saved/Sa
 chown -R 1000:1000 $mnt/home/steam
 # I think the following are self explanatory ...if not read the man page of buildah
 buildah umount $container
-buildah copy --chown 1000:1000 $container src /home/steam
+buildah copy --chown 1000:1000 $container run_satisfactory_server.sh /home/steam
 buildah config --user steam $container
 buildah config --workingdir /home/steam $container
 buildah config --entrypoint '/bin/bash /home/steam/run_satisfactory_server.sh' $container
