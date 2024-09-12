@@ -27,21 +27,21 @@ function set_maxplayers () {
     # installing crudini would increase the image size by 50%, so we work with sed
     printf "\n### Setting MaxPlayers to $maxplayers...\n"
     # create config dir if it does not exist
-    [ ! -e $configdir ] && mkdir -p $configdir
+    [ ! -e $config_dir ] && mkdir -p $config_dir
     # create Game.ini if it does not exist
-    [ ! -e $configdir/Game.ini ] && touch $configdir/Game.ini
+    [ ! -e $config_dir/Game.ini ] && touch $config_dir/Game.ini
     # Add Section and maxplayers if section does not exist
-    if ! grep -q '\[/Script/Engine.GameSession]' $configdir/Game.ini ; then
-        echo >> $configdir/Game.ini
-        echo '[/Script/Engine.GameSession]' >> $configdir/Game.ini
-        echo "MaxPlayers=$maxplayers" >> $configdir/Game.ini
+    if ! grep -q '\[/Script/Engine.GameSession]' $config_dir/Game.ini ; then
+        echo >> $config_dir/Game.ini
+        echo '[/Script/Engine.GameSession]' >> $config_dir/Game.ini
+        echo "MaxPlayers=$maxplayers" >> $config_dir/Game.ini
     else
         # Add maxplayers if it does not exist
-        if ! grep -q MaxPlayers= $configdir/Game.ini; then
-            sed -i "/\[\/Script\/Engine.GameSession\]/a MaxPlayers=$maxplayers" $configdir/Game.ini
+        if ! grep -q MaxPlayers= $config_dir/Game.ini; then
+            sed -i "/\[\/Script\/Engine.GameSession\]/a MaxPlayers=$maxplayers" $config_dir/Game.ini
         else
             # Set maxplayers if it exists
-            sed -i "s/MaxPlayers=.*/MaxPlayers=$maxplayers/" $configdir/Game.ini
+            sed -i "s/MaxPlayers=.*/MaxPlayers=$maxplayers/" $config_dir/Game.ini
         fi
     fi
 }
