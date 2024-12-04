@@ -8,7 +8,7 @@ container=$(buildah from scratch)
 mnt=$(buildah mount $container)
 
 # only install the bare essentials needed to run steamcmd
-dnf install --installroot $mnt -y --nogpgcheck --releasever $fedora_version --nodocs --setopt install_weak_deps=False tar gzip glibc.i686 libstdc++.i686 curl findutils
+dnf install --installroot $mnt -y --nogpgcheck --releasever $fedora_version --nodocs --setopt install_weak_deps=False tar gzip glibc.i686 libstdc++.i686 curl findutils xdg-user-dirs
 dnf clean all --installroot $mnt
 # account name, uid and gid can be anything, but I chose steam, 1000, 1000 because I'm totally devoid of creativity
 echo 'steam:x:1000:' >> $mnt/etc/group

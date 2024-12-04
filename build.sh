@@ -7,9 +7,9 @@
 set -ex
 
 function set_vars () {
-  version=latest
+  version=1.5
   fedora_version=40
-  registry=localhost
+  registry=registry.tjako.thuis:9999/library
   containername=satisfactory-server
   
 }
